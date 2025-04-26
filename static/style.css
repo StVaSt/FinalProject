@@ -1,27 +1,27 @@
 html, body {
-    height: auto; /* Занимает всю высоту окна */
+    height: auto;
     weight: auto;
-    margin: 0; /* Убираем отступы */
-    background-image: url('background.jpg'); /* Путь к изображению */
-    background-repeat: repeat; /* Повторяем изображение по умолчанию */
-    background-size: auto; /* Размер по умолчанию, не будем его растягивать */
-    font-style: italic; /* Делаем весь текст курсивным */
+    margin: 0;
+    background-image: url('background.jpg');
+    background-repeat: repeat;
+    background-size: auto;
+    font-style: italic;
     }
 
 body {
-    display: flex; /* Включаем Flexbox */
-    justify-content: center; /* Центрируем по горизонтали */
-    align-items: center; /* Центрируем по вертикали */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content {
-    text-align: center; /* Выравнивание текста по центру */
-    font-size: 25px; /* Задаём базовый размер шрифта */
-    font-weight: 600; /* Стандартная жирность текста */
-    max-width: 100%; /* Ограничение ширины для лучшего выравнивания */
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    max-width: 100%;
     max-width: none;
-    margin: 0 auto; /* Центрирование контента */
-    padding: 5px; /* Добавьте отступы, если необходимо */
+    margin: 0 auto;
+    padding: 5px;
 }
 
 .empty_element {
@@ -36,32 +36,32 @@ body {
 }
 
 .error {
-    font-size: 18px; /* Задаём базовый размер шрифта */
-    font-weight: 600; /* Стандартная жирность текста */
-    font-style: italic; /* Делаем весь текст курсивным */
+    font-size: 18px;
+    font-weight: 600;
+    font-style: italic;
     color: red;
 }
 
 .buttons {
-    display: flex; /* Используем Flexbox для кнопок */
-    flex-direction: column; /* Располагаем кнопки в столбик */
-    gap: 10px; /* Пробел между кнопками */
-    margin-top: 20px; /* Отступ сверху, чтобы отделить кнопки от заголовка */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 button {
-    padding: 10px 20px; /* Отступы внутри кнопок */
-    font-size: 20px; /* Размер шрифта */
-    border: none; /* Убираем рамку */
-    border-radius: 5px; /* Закругление углов кнопок */
-    background-color: #660099; /* Цвет фона кнопок */
-    color: white; /* Цвет текста кнопок */
-    cursor: pointer; /* Указатель при наведении */
-    transition: background-color 0.3s ease; /* Плавный переход для фона */
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #660099;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #9900CC; /* Цвет фона при наведении */
+    background-color: #9900CC;
 }
 
     .letter {
@@ -79,7 +79,7 @@ button:hover {
     }
 
     .used {
-       background-color: red; /* фон красный */
-       color: white; /* цвет текста белый */
-       cursor: not-allowed; /* курсор для неактивных кнопок */
+       background-color: red;
+       color: white;
+       cursor: not-allowed;
    }

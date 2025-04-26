@@ -2,17 +2,21 @@ from flask import Flask, render_template
 import functions
 from models import db
 import function_game
+import json
 
 
 app = Flask(__name__)
 
+with open('config.json', 'r') as config_file:
+    config = json.load(config_file)
+
 # Настройка подключения к базе данных
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:qwerty@127.0.0.1:7777/hangman'
+app.config['SQLALCHEMY_DATABASE_URI'] = config['database']['uri']
+
+app.secret_key = config['secret']['key']
 
 # Инициализация объекта db
 db.init_app(app)
-
-app.secret_key = 'GaMeHaNgMaN'
 
 @app.route("/")
 def main():

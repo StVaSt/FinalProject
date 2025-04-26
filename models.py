@@ -35,40 +35,29 @@ class CookiesHangman(db.Model):
 
 class GameSessionData:
     def __init__(self):
-        self.login = session.get('login', '')
-        self.word = session.get('word', '')
-        self.count_letter = session.get('count_letter', 0)
-        self.description = session.get('description', '')
-        self.count_win = session.get('count_win', 0)
-        self.count_loss = session.get('count_loss', 0)
-        self.image_num = session.get('image_num', '')
-        self.try_win = session.get('try_win', 0)
-        self.try_loss = session.get('try_loss', 0)
-        self.empty_element = session.get('empty_element', '')
-        self.used_letters = session.get('used_letters', [])
+        data_1 = ["login", "word", "description", "image_num", "empty_element"]
+        for i in data_1:
+            setattr(self, i, session.get(i, ''))
+        data_2 = ["count_letter","count_win", "count_loss","try_win", "try_loss"]
+        for j in data_2:
+            setattr(self, j, session.get(j, 0))
+        data_3 = ["used_letters"]
+        for k in data_3:
+            setattr(self, k, session.get(k, []))
 
     def save(self):
-        session['login'] = self.login
-        session['word'] = self.word
-        session['count_letter'] = self.count_letter
-        session['description'] = self.description
-        session['count_win'] = self.count_win
-        session['count_loss'] = self.count_loss
-        session['image_num'] = self.image_num
-        session['try_win'] = self.try_win
-        session['try_loss'] = self.try_loss
-        session['empty_element'] = self.empty_element
-        session['used_letters'] = self.used_letters
+        data_1 = ["login", "word", "count_letter", "description", "count_win", "count_loss", "image_num", "try_win", "try_loss", "empty_element", "used_letters"]
+        for i in data_1:
+            session[i] = getattr(self, i)
 
     def reset(self):
-        self.word = ''
-        self.count_letter = 0
-        self.description = ''
-        self.count_win = 0
-        self.count_loss = 0
-        self.image_num = ''
-        self.try_win = 0
-        self.try_loss = 0
-        self.empty_element = ''
-        self.used_letters = []
+        data_1 = ["word", "description", "image_num", "empty_element"]
+        for i in data_1:
+            setattr(self, i, '')
+        data_2 = ["count_letter","count_win", "count_loss","try_win", "try_loss"]
+        for j in data_2:
+            setattr(self, j, 0)
+        data_3 = ["used_letters"]
+        for k in data_3:
+            setattr(self, k, [])
         self.save()
