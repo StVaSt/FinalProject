@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
-from functions import new_users
+from functions import register_user, authorize_user, check_cookie, add_new_word
 from models import db
-import function_game
+from function_game import guessing
 import json
 
 
@@ -28,9 +28,9 @@ def registration():
 
 @app.route("/new_users", methods=["POST"])
 def new_users():
-    word = request.form['word'].upper()
-    description = request.form['description'].capitalize()
-    return new_users(word, description)
+    login = request.form['login']
+    password = request.form['pass']
+    return register_user(login, password)
 
 @app.route("/authorization")
 def authorization():
@@ -38,7 +38,9 @@ def authorization():
 
 @app.route("/login_users", methods=["POST"])
 def login_users():
-    return functions.login_users()
+    login = request.form['login']
+    password = request.form['pass']
+    return authorize_user(login, password)
 
 @app.route("/rules")
 def rules():
@@ -47,27 +49,30 @@ def rules():
 
 @app.route("/main_game")
 def main_game():
-    return functions.check_cookie("main_game")
+    return check_cookie("main_game")
 
 @app.route("/add_word")
 def add_word():
-    return functions.check_cookie("add_word")
+    return check_cookie("add_word")
 
 @app.route("/new_word", methods=["POST"])
 def new_word():
-    return functions.new_word()
+    word = request.form['word']
+    description = request.form['description']
+    return add_new_word(word, description)
 
 @app.route("/statistics")
 def statistics():
-    return functions.check_cookie("statistics")
+    return check_cookie("statistics")
 
 @app.route("/play")
 def play():
-    return functions.check_cookie("play")
+    return check_cookie("play")
 
 @app.route("/guess", methods=["POST"])
 def guess():
-    return function_game.guess()
+    letter = request.form['letter']
+    return guessing(letter)
 
 
 if __name__ == '__main__':

@@ -18,10 +18,7 @@ errors = {
     "the wrong word": "Слово должно быть от 5 до 15 символов",
     "you need to log in": "Необходима авторизация"}
 
-def new_users():
-    login = request.form['login']
-    password = request.form['pass']
-
+def register_user(login, password):
     existing_user = UsersHangman.query.filter_by(login=login).first()
     if existing_user:
         return render_template("registration.html", error=errors["existing_login"])
@@ -41,11 +38,7 @@ def new_users():
 
     return render_template("registration_ok.html")
 
-def login_users():
-
-    login = request.form['login']
-    password = request.form['pass']
-
+def authorize_user(login, password):
     existing_user = UsersHangman.query.filter_by(login=login).first()
     if not existing_user:
         return render_template("authorization.html", error=errors["username_does_not_exist"])
@@ -67,7 +60,7 @@ def login_users():
 
     return response
 
-def new_word(word, description):
+def add_new_word(word, description):
     existing_word = WordsHangman.query.filter_by(word=word).first()
     if existing_word:
         return render_template("add_word.html", error=errors["existing_word"])

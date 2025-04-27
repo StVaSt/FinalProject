@@ -52,8 +52,7 @@ def get_random_word():
         return None
 
 
-def guess():
-    letter = request.form['letter']
+def guessing(letter):
     game_data = GameSessionData()
 
     if letter in game_data.word:

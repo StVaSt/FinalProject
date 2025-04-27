@@ -35,29 +35,25 @@ class CookiesHangman(db.Model):
 
 class GameSessionData:
     def __init__(self):
-        data_1 = ["login", "word", "description", "image_num", "empty_element"]
-        for i in data_1:
+        self.data_strings = ["login", "word", "description", "image_num", "empty_element"]
+        for i in self.data_strings:
             setattr(self, i, session.get(i, ''))
-        data_2 = ["count_letter","count_win", "count_loss","try_win", "try_loss"]
-        for j in data_2:
+        self.data_ints = ["count_letter","count_win", "count_loss","try_win", "try_loss"]
+        for j in self.data_ints:
             setattr(self, j, session.get(j, 0))
-        data_3 = ["used_letters"]
-        for k in data_3:
+        self.data_lists = ["used_letters"]
+        for k in self.data_lists:
             setattr(self, k, session.get(k, []))
 
     def save(self):
-        data_1 = ["login", "word", "count_letter", "description", "count_win", "count_loss", "image_num", "try_win", "try_loss", "empty_element", "used_letters"]
-        for i in data_1:
+        for i in self.data_strings + self.data_ints + self.data_lists:
             session[i] = getattr(self, i)
 
     def reset(self):
-        data_1 = ["word", "description", "image_num", "empty_element"]
-        for i in data_1:
+        for i in self.data_strings:
             setattr(self, i, '')
-        data_2 = ["count_letter","count_win", "count_loss","try_win", "try_loss"]
-        for j in data_2:
+        for j in self.data_ints:
             setattr(self, j, 0)
-        data_3 = ["used_letters"]
-        for k in data_3:
+        for k in self.data_lists:
             setattr(self, k, [])
         self.save()
