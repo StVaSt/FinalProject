@@ -67,10 +67,7 @@ def login_users():
 
     return response
 
-def new_word():
-    word = request.form['word'].upper()
-    description = request.form['description'].capitalize()
-
+def new_word(word, description):
     existing_word = WordsHangman.query.filter_by(word=word).first()
     if existing_word:
         return render_template("add_word.html", error=errors["existing_word"])

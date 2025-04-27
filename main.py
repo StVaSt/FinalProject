@@ -1,5 +1,5 @@
-from flask import Flask, render_template
-import functions
+from flask import Flask, render_template, request
+from functions import new_users
 from models import db
 import function_game
 import json
@@ -28,7 +28,9 @@ def registration():
 
 @app.route("/new_users", methods=["POST"])
 def new_users():
-    return functions.new_users()
+    word = request.form['word'].upper()
+    description = request.form['description'].capitalize()
+    return new_users(word, description)
 
 @app.route("/authorization")
 def authorization():
