@@ -57,8 +57,8 @@ def add_word():
 
 @app.route("/new_word", methods=["POST"])
 def new_word():
-    word = request.form['word']
-    description = request.form['description']
+    word = request.form['word'].strip().capitalize()
+    description = request.form['description'].strip().capitalize()
     return add_new_word(word, description)
 
 @app.route("/statistics")
